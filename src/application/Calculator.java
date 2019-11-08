@@ -49,7 +49,10 @@ public class Calculator {
 		 */
 	}
 	
-	/* Hier die Methoden mit den Formlen hinzufügen
-	 */
+	/* Hier die Methoden mit den Formlen */
 	
+	public double uAusRundI(double r, double i) {
+		 return r*i;
+		}
+
 }
