@@ -49,7 +49,7 @@ public class Calculator {
 		 */
 	}
 
-	/* Hier die Methoden mit den Formlen hinzufügen */
+	/* Hier die Methoden mit den Formlen */
 
 	/* p berechnen */
 
@@ -78,4 +78,19 @@ public class Calculator {
 	public double uAusPundR(double p, double r) {
 		return Math.sqrt(p * r);
 	}
+
+	/* r berechnen */
+
+	public double rAusUundI(double u, double i) {
+		return u / i;
+	}
+
+	public double rAusPundI(double p, double i) {
+		return p / Math.pow(i, 2);
+	}
+
+	public double rAusUundP(double u, double p) {
+		return Math.pow(u, 2) / p;
+	}
+
 }
