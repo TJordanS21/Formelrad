@@ -47,7 +47,30 @@ public class Calculator {
 		 * Hier auf Grund der vorhanden Werte entscheiden welche Methode unten
 		 * aufgerufen werden muss.
 		 */
-		
+		if (leistung != 0.0 && spannung != 0.0) {
+			strom = iAusPUndU(leistung, spannung);
+			widerstand = rAusUundP(spannung, leistung);
+		}
+		if (leistung != 0.0 && strom != 0.0) {
+			spannung = uAusPundI(leistung, strom);
+			widerstand = rAusPundI(leistung, strom);
+		}
+		if (leistung != 0.0 && widerstand != 0.0) {
+			spannung = uAusPundR(leistung, widerstand);
+			strom = iAusPUndR(leistung, widerstand);
+		}
+		if (spannung != 0.0 && widerstand != 0.0) {
+			leistung = pAusUUndR(spannung, widerstand);
+			strom = iAusUUndR(spannung, widerstand);
+		}
+		if (spannung != 0.0 && strom != 0.0) {
+			leistung = pAusUUndI(spannung, strom);
+			widerstand = rAusUundI(spannung, strom);
+		}
+		if (widerstand != 0.0 && strom != 0.0) {
+			leistung = pAusRUndI(widerstand, strom);
+			spannung = uAusRundI(widerstand, strom);
+		}
 	}
 
 	/* Hier die Methoden mit den Formlen */
@@ -79,7 +102,7 @@ public class Calculator {
 	public double uAusPundR(double p, double r) {
 		return Math.sqrt(p * r);
 	}
-	
+
 	/* r berechnen */
 
 	public double rAusUundI(double u, double i) {
@@ -93,18 +116,18 @@ public class Calculator {
 	public double rAusUundP(double u, double p) {
 		return Math.pow(u, 2) / p;
 	}
-	
+
 	/* I berechnen */
-	
+
 	public double iAusUUndR(double u, double r) {
-		return u/r;
+		return u / r;
 	}
-	
+
 	public double iAusPUndU(double p, double u) {
-		return p/u;
+		return p / u;
 	}
-	
+
 	public double iAusPUndR(double p, double r) {
-		return Math.sqrt(p/r);
+		return Math.sqrt(p / r);
 	}
 }
