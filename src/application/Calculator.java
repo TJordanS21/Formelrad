@@ -1,5 +1,8 @@
 package application;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 /**
  * Berechnet das Formelrad
  * 
@@ -47,29 +50,42 @@ public class Calculator {
 		 * Hier auf Grund der vorhanden Werte entscheiden welche Methode unten
 		 * aufgerufen werden muss.
 		 */
-		if (leistung != 0.0 && spannung != 0.0) {
-			strom = iAusPUndU(leistung, spannung);
-			widerstand = rAusUundP(spannung, leistung);
-		}
-		if (leistung != 0.0 && strom != 0.0) {
-			spannung = uAusPundI(leistung, strom);
-			widerstand = rAusPundI(leistung, strom);
-		}
-		if (leistung != 0.0 && widerstand != 0.0) {
-			spannung = uAusPundR(leistung, widerstand);
-			strom = iAusPUndR(leistung, widerstand);
-		}
-		if (spannung != 0.0 && widerstand != 0.0) {
-			leistung = pAusUUndR(spannung, widerstand);
-			strom = iAusUUndR(spannung, widerstand);
-		}
-		if (spannung != 0.0 && strom != 0.0) {
-			leistung = pAusUUndI(spannung, strom);
-			widerstand = rAusUundI(spannung, strom);
-		}
-		if (widerstand != 0.0 && strom != 0.0) {
-			leistung = pAusRUndI(widerstand, strom);
-			spannung = uAusRundI(widerstand, strom);
+		
+		if ((leistung != 0.0 && spannung != 0.0 && strom != 0.0)
+				|| (leistung != 0.0 && spannung != 0.0 && widerstand != 0.0)
+				|| (widerstand != 0.0 && spannung != 0.0 && strom != 0.0)
+				|| (widerstand != 0.0 && leistung != 0.0 && strom != 0.0)) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Error");
+			alert.setHeaderText("Zu viele Angaben");
+			alert.setContentText("Bitte nicht mehr als 2 Groessen eingeben!!!!");
+			alert.showAndWait();
+		} else {
+
+			if (leistung != 0.0 && spannung != 0.0) {
+				strom = iAusPUndU(leistung, spannung);
+				widerstand = rAusUundP(spannung, leistung);
+			}
+			if (leistung != 0.0 && strom != 0.0) {
+				spannung = uAusPundI(leistung, strom);
+				widerstand = rAusPundI(leistung, strom);
+			}
+			if (leistung != 0.0 && widerstand != 0.0) {
+				spannung = uAusPundR(leistung, widerstand);
+				strom = iAusPUndR(leistung, widerstand);
+			}
+			if (spannung != 0.0 && widerstand != 0.0) {
+				leistung = pAusUUndR(spannung, widerstand);
+				strom = iAusUUndR(spannung, widerstand);
+			}
+			if (spannung != 0.0 && strom != 0.0) {
+				leistung = pAusUUndI(spannung, strom);
+				widerstand = rAusUundI(spannung, strom);
+			}
+			if (widerstand != 0.0 && strom != 0.0) {
+				leistung = pAusRUndI(widerstand, strom);
+				spannung = uAusRundI(widerstand, strom);
+			}
 		}
 	}
 
