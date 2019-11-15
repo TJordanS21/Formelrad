@@ -47,6 +47,7 @@ public class Calculator {
 		 * Hier auf Grund der vorhanden Werte entscheiden welche Methode unten
 		 * aufgerufen werden muss.
 		 */
+		
 	}
 
 	/* Hier die Methoden mit den Formlen */
