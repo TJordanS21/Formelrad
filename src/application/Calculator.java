@@ -78,7 +78,7 @@ public class Calculator {
 	public double uAusPundR(double p, double r) {
 		return Math.sqrt(p * r);
 	}
-
+	
 	/* r berechnen */
 
 	public double rAusUundI(double u, double i) {
@@ -92,5 +92,18 @@ public class Calculator {
 	public double rAusUundP(double u, double p) {
 		return Math.pow(u, 2) / p;
 	}
-
+	
+	/* I berechnen */
+	
+	public double iAusUUndR(double u, double r) {
+		return u/r;
+	}
+	
+	public double iAusPUndU(double p, double u) {
+		return p/u;
+	}
+	
+	public double iAusPUndR(double p, double r) {
+		return Math.sqrt(p/r);
+	}
 }
