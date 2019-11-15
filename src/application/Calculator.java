@@ -1,5 +1,8 @@
 package application;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -14,6 +17,7 @@ public class Calculator {
 	private double spannung;
 	private double strom;
 	private double widerstand;
+	private final static Logger LOGGER = Logger.getLogger(Calculator.class.getName());
 
 	public Calculator(double leistung, double spannung, double strom, double widerstand) {
 		super();
@@ -50,7 +54,8 @@ public class Calculator {
 		 * Hier auf Grund der vorhanden Werte entscheiden welche Methode unten
 		 * aufgerufen werden muss.
 		 */
-		
+		LOGGER.setLevel(Level.INFO);
+
 		if ((leistung != 0.0 && spannung != 0.0 && strom != 0.0)
 				|| (leistung != 0.0 && spannung != 0.0 && widerstand != 0.0)
 				|| (widerstand != 0.0 && spannung != 0.0 && strom != 0.0)
@@ -60,31 +65,39 @@ public class Calculator {
 			alert.setHeaderText("Zu viele Angaben");
 			alert.setContentText("Bitte nicht mehr als 2 Groessen eingeben!!!!");
 			alert.showAndWait();
+			LOGGER.warning("Zu viele Angaben");
 		} else {
-
 			if (leistung != 0.0 && spannung != 0.0) {
+				LOGGER.info("I wird aus P und U berechnet");
 				strom = iAusPUndU(leistung, spannung);
+				LOGGER.info("R wird aus U und P berechnet");
 				widerstand = rAusUundP(spannung, leistung);
-			}
-			if (leistung != 0.0 && strom != 0.0) {
+			} else if (leistung != 0.0 && strom != 0.0) {
+				LOGGER.info("U wird aus P und I berechnet");
 				spannung = uAusPundI(leistung, strom);
+				LOGGER.info("R wird aus P und I berechnet");
 				widerstand = rAusPundI(leistung, strom);
-			}
-			if (leistung != 0.0 && widerstand != 0.0) {
+			} else if (leistung != 0.0 && widerstand != 0.0) {
+				LOGGER.info("U wird aus P und R berechnet");
 				spannung = uAusPundR(leistung, widerstand);
+				LOGGER.info("I wird aus P und R berechnet");
 				strom = iAusPUndR(leistung, widerstand);
-			}
-			if (spannung != 0.0 && widerstand != 0.0) {
+			} else if (spannung != 0.0 && widerstand != 0.0) {
+				LOGGER.info("P wird aus U und R berechnet");
 				leistung = pAusUUndR(spannung, widerstand);
+				LOGGER.info("I wird aus U und R berechnet");
 				strom = iAusUUndR(spannung, widerstand);
-			}
-			if (spannung != 0.0 && strom != 0.0) {
+			} else if (spannung != 0.0 && strom != 0.0) {
+				LOGGER.info("P wird aus U und I berechnet");
 				leistung = pAusUUndI(spannung, strom);
+				LOGGER.info("R wird aus U und I berechnet");
 				widerstand = rAusUundI(spannung, strom);
-			}
-			if (widerstand != 0.0 && strom != 0.0) {
+			} else if (widerstand != 0.0 && strom != 0.0) {
+				LOGGER.info("P wird aus R und I berechnet");
 				leistung = pAusRUndI(widerstand, strom);
+				LOGGER.info("U wird aus R und I berechnet");
 				spannung = uAusRundI(widerstand, strom);
+
 			}
 		}
 	}
