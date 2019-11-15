@@ -84,4 +84,8 @@ public class Calculator {
 	public double iAusUUndR(double u, double r) {
 		return u/r;
 	}
+	
+	public double iAusPUndU(double p, double u) {
+		return p/u;
+	}
 }
