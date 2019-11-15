@@ -78,4 +78,10 @@ public class Calculator {
 	public double uAusPundR(double p, double r) {
 		return Math.sqrt(p * r);
 	}
+	
+	/* I berechnen */
+	
+	public double iAusUUndR(double u, double r) {
+		return u/r;
+	}
 }
