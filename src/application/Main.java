@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 
 /**
  * Berechnet das Formelrad
+ * 
  * @author Tyler Storz, Nico Leemann
  * @version 01.11.2019
  */
@@ -23,7 +24,7 @@ public class Main extends Application {
 			Pane root = new Pane();
 
 			// Creating an image
-			Image image = new Image(getClass().getResourceAsStream("formelradelektronik.gif"));	
+			Image image = new Image(getClass().getResourceAsStream("formelradelektronik.gif"));
 			ImageView imageView = new ImageView(image);
 			imageView.setX(10);
 			imageView.setY(10);
@@ -76,28 +77,36 @@ public class Main extends Application {
 			btnBerechnen.relocate(100, 445);
 			btnBerechnen.setText("Berechnen");
 			root.getChildren().add(btnBerechnen);
-			
+
 			btnBerechnen.setOnAction(e -> {
 				double power = 0.0;
 				double tension = 0.0;
 				double current = 0.0;
 				double resistence = 0.0;
-				if(txLeistung.getText().isEmpty()==false) {
+				txLeistung.setStyle("-fx-text-fill: red");
+				txSpannung.setStyle("-fx-text-fill: red");
+				txStrom.setStyle("-fx-text-fill: red");
+				txWiderstand.setStyle("-fx-text-fill: red");
+
+				if (txLeistung.getText().isEmpty() == false) {
 					power = Double.parseDouble(txLeistung.getText());
+					txLeistung.setStyle("-fx-text-fill: black");
 				}
-				if(txSpannung.getText().isEmpty()==false) {
+				if (txSpannung.getText().isEmpty() == false) {
 					tension = Double.parseDouble(txSpannung.getText());
+					txSpannung.setStyle("-fx-text-fill: black");
 				}
-				if(txStrom.getText().isEmpty()==false) {
+				if (txStrom.getText().isEmpty() == false) {
 					current = Double.parseDouble(txStrom.getText());
+					txStrom.setStyle("-fx-text-fill: black");
 				}
-				if(txWiderstand.getText().isEmpty()==false) {
+				if (txWiderstand.getText().isEmpty() == false) {
 					resistence = Double.parseDouble(txWiderstand.getText());
+					txWiderstand.setStyle("-fx-text-fill: black");
 				}
-				Calculator myCalculator = new Calculator(
-						power, tension, current, resistence);
+				Calculator myCalculator = new Calculator(power, tension, current, resistence);
 				myCalculator.calculate();
-					
+
 				txLeistung.setText(Double.toString(myCalculator.getLeistung()));
 				txSpannung.setText(Double.toString(myCalculator.getSpannung()));
 				txStrom.setText(Double.toString(myCalculator.getStrom()));
